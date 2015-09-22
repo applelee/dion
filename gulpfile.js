@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var uglifyjs = require('gulp-uglify');
+var buffer = require('vinyl-buffer');
 var less = require('gulp-less');
 var babelify = require('babelify');
 var browserify = require('browserify');
@@ -10,15 +11,26 @@ var concat = require('gulp-concat');
 var del = require('del');
 
 var cssArr = [
-    './app/assets/css/amend01.css',
-    './app/assets/css/shortcodes.css',
-    './app/assets/css/prettyPhoto.css',
-    './app/assets/css/font-awesome.css',
-    './app/assets/css/settings-panel.css',
-    './app/assets/css/skeleton.css',
-    './app/assets/css/base.css',
-    './app/assets/css/style.css',
-    './app/assets/css/mycss.css'
+    './app/index/assets/css/amend01.css',
+    './app/index/assets/css/shortcodes.css',
+    './app/index/assets/css/prettyPhoto.css',
+    './app/index/assets/css/font-awesome.css',
+    './app/index/assets/css/settings-panel.css',
+    './app/index/assets/css/skeleton.css',
+    './app/index/assets/css/base.css',
+    './app/index/assets/css/style.css',
+    './app/index/assets/css/mycss.css'
+];
+
+var cssUserAdmin = [
+    './app/user_admin/assets/css/reset.css',
+    './app/user_admin/assets/css/fullcalendar.css',
+    './app/user_admin/assets/css/datatable.css',
+    './app/user_admin/assets/css/ui_custom.css',
+    './app/user_admin/assets/css/prettyPhoto.css',
+    './app/user_admin/assets/css/elfinder.css',
+    './app/user_admin/assets/css/main.css',
+    './app/user_admin/assets/css/mycss.css'
 ];
 
 /* 合并压缩LESS
@@ -36,25 +48,45 @@ gulp.task('minifycss', function() {
     gulp.src(cssArr)                                        //压缩的文件
         .pipe(concat('main.css'))                           //合并
         .pipe(minifycss())                                  //执行压缩
-        .pipe(gulp.dest('./app/assets/minicss'));           //输出文件夹
+        .pipe(gulp.dest('./app/index/assets/minicss'));           //输出文件夹
+});
+
+/* 合并压缩后台CSS */
+gulp.task('minifyusercss', function() {
+    gulp.src(cssUserAdmin)                                       //压缩的文件
+        .pipe(concat('main.css'))                               //合并
+        .pipe(minifycss())                                      //执行压缩
+        .pipe(gulp.dest('./app/user_admin/assets/minicss'));         //输出文件夹
 });
 
 /* 合并js依赖 */
-gulp.task('browserify', function() {
-    browserify('./app/src/app.js')
+gulp.task('browserify1', function() {
+    browserify('./app/index/src/app.js')
         .transform(babelify)
         .bundle()
         .on('error',function(err){console.log(err.message)})
         .pipe(source('bundle.js'))
+        //.pipe(buffer())
         //.pipe(uglifyjs())
-        .pipe(gulp.dest('./app/build'));
+        .pipe(gulp.dest('./app/index/build'));
+});
+
+gulp.task('browserify2', function() {
+    browserify('./app/user_admin/src/app.js')
+        .transform(babelify)
+        .bundle()
+        .on('error',function(err){console.log(err.message)})
+        .pipe(source('bundle.js'))
+        //.pipe(buffer())
+        //.pipe(uglifyjs())
+        .pipe(gulp.dest('./app/user_admin/build'));
 });
 
 /* 压缩js */
-gulp.task('uglifyjs',function(){
-    gulp.src('./app/build/*.js')
+gulp.task('uglify1',function(){
+    gulp.src('./app/index/build/*.js')
         .pipe(uglifyjs())
-        .pipe(gulp.dest('./app/build'));
+        .pipe(gulp.dest('./app/user_admin/build'));
 });
 
 gulp.task('webserver', function() {
@@ -68,19 +100,27 @@ gulp.task('webserver', function() {
 });
 
 gulp.task("cleancss",function(cb){
-    del(['./app/assets/minicss/*.css'], cb);
+    del(['./app/index/assets/minicss/*.css','./app/user_admin/assets/minicss/*.css'], cb);
 });
 
-gulp.task("cleanjs",function(cb){
-    del(['./app/build/*.js'], cb);
+gulp.task("cleanjs1",function(cb){
+    del(['./app/index/build/*.js'], cb);
+});
+
+gulp.task("cleanjs2",function(cb){
+    del(['./app/user_admin/build/*.js'], cb);
 });
 
 gulp.task("watchercss",function(){
-    gulp.watch('./app/assets/css/*.css',['cleancss','minifycss']);
+    gulp.watch(['./app/index/assets/css/*.css','./app/user_admin/assets/css/*.css'],['cleancss','minifycss','minifyusercss']);
 });
 
-gulp.task("watcherjs",function(){
-    gulp.watch('./app/src/**/*.js',['cleanjs','browserify','uglifyjs']);
+gulp.task("watcherjs1",function(){
+    gulp.watch('./app/index/src/**/*.js',['cleanjs1','browserify1']);
 });
 
-gulp.task('default',['minifycss','browserify','uglifyjs','watchercss','watcherjs','webserver']);
+gulp.task("watcherjs2",function(){
+    gulp.watch('./app/user_admin/src/**/*.js',['cleanjs2','browserify2']);
+});
+
+gulp.task('default',['minifycss','minifyusercss','browserify1','browserify2','watchercss','watcherjs1','watcherjs2','webserver']);
