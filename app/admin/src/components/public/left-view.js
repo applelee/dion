@@ -11,7 +11,7 @@ var LeftView = React.createClass({
     render : function(){
         return (
             <div className='left-view' id="leftSide">
-                <div className="logo"><a href='#/'><img src="images/logo.png" alt="" /></a></div>
+                <div className="logo"><a href='#/'><img src="./assets/images/logo.png" alt="" /></a></div>
 
                 <div id='menu_box'>
                     <ul id="menu" className="nav">
@@ -23,7 +23,7 @@ var LeftView = React.createClass({
                                 <li><a href='#/notice_management' title="">公告管理</a></li>
                                 <li><a href='#/sys_log' title="">系统日志</a></li>
                                 <li><a href='#/withdrawals_management' title="">提现管理</a></li>
-                                <li><a href='#/massage_management' title="">留言管理</a></li>
+                                <li><a href='#/message_management' title="">留言管理</a></li>
                             </ul>
                         </li>
                     </ul>

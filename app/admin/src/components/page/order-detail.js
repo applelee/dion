@@ -22,7 +22,7 @@ var OrderDetail = React.createClass({
                         <p>
                             <span>收货地址：四川省成都市锦江区万达广场10栋</span><br/>
                             <span>物流费用：0.0元</span><br/>
-                            <span>发货状态：已发货</span>
+                            <span>发货状态：未发货</span><span>立即发货</span>
                         </p>
                         <div className='line'></div>
                         <p>

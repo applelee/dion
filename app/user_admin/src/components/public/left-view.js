@@ -11,7 +11,7 @@ var LeftView = React.createClass({
     render : function(){
         return (
             <div className='left-view' id="leftSide">
-                <div className="logo"><a href='#/'><img src="images/logo.png" alt="" /></a></div>
+                <div className="logo"><a href='#/'><img src="./assets/images/logo.png" alt="" /></a></div>
 
                 <div id='menu_box'>
                     <ul id="menu" className="nav">

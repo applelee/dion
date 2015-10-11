@@ -1005,7 +1005,7 @@ var Header = React.createClass({
                         React.createElement(
                             'a',
                             { href: 'index.html' },
-                            React.createElement('img', { src: './index/assets/img/logo.png', alt: 'EVOLVE' })
+                            React.createElement('img', { src: './assets/img/logo.png', alt: 'EVOLVE' })
                         )
                     )
                 ),

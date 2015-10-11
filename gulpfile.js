@@ -72,7 +72,7 @@ gulp.task('minifyusercss', function() {
 
 /* 合并压缩后台CSS */
 gulp.task('minifyadmincss', function() {
-    gulp.src(cssUserAdmin)                                       //压缩的文件
+    gulp.src(cssAdmin)                                       //压缩的文件
         .pipe(concat('main.css'))                               //合并
         .pipe(minifycss())                                      //执行压缩
         .pipe(gulp.dest('./app/admin/assets/minicss'));         //输出文件夹
@@ -151,7 +151,7 @@ gulp.task("watcherjs2",function(){
 });
 
 gulp.task("watcherjs3",function(){
-    gulp.watch('./app/admin/src/**/*.js',['cleanjs2','browserify3']);
+    gulp.watch('./app/admin/src/**/*.js',['cleanjs3','browserify3']);
 });
 
-gulp.task('default',['minifycss','minifyusercss','browserify1','browserify2','browserify3','watchercss','watcherjs1','watcherjs2','watcherjs3','webserver']);
+gulp.task('default',['minifycss','minifyusercss','minifyadmincss','browserify1','browserify2','browserify3','watchercss','watcherjs1','watcherjs2','watcherjs3','webserver']);

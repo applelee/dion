@@ -187,10 +187,25 @@
 
 /* ========== 用户管理 ========== */
 
-.user-management-view{padding-top:36px;}
+.user-management-view,.add-user-view,.mall-management-view,.add-commodity-view,.order-management-view,.notice-management-view,.sys-log-view,.withdrawals-management-view,.message-management-view{padding-top:36px;padding-bottom:2pc;}
+.user-management-view div.selector{background:none;}
+.user-management-view .user-management .oneTow{height:75px;}
+.add-user-btn{width:200px;height:60px;display:block;line-height:60px;margin:10px 0 10px 28px;background-color:#91bd09;font-size:18px;color:#fff;text-align:center;}
 
+.add-user-view input[name='sexy']{margin-right:5px;}
+.add-user-view div.selector,.mall-management-view div.selector,.order-management-view div.selector,.sys-log-view div.selector，.withdrawals-management-view div.selector{background:none;}
 
-.oneTow{width:49%;margin-left:2%;}
+.mall-management-view .price input{width:100px;}
+
+.add-commodity-view div.selector{background:none;}
+.add-commodity-view .jianjie{width:500px;height:150px;}
+
+.mall-management-view .foot-box,.order-management-view .foot-box{border-top:1px solid #ccc;}
+.mall-management-view .foot-box .btn,.order-management-view .foot-box .btn{cursor:pointer;margin-left:20px;}
+
+.withdrawals-management-view .add-user-btn{float:left;height:30px;line-height:30px;width:100px;font-size:16px;}
+
+.oneTow{width:49%;margin-left:2%;float:left;}
 .oneTow:nth-child(2n+1){margin-left:0;}
 
 

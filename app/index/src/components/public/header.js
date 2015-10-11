@@ -28,7 +28,7 @@ var Header = React.createClass({
             <header className="header">
                 <div className="container">
                     <div className="logos columns">
-                        <h1 className="logo"><a href="index.html"><img src="./index/assets/img/logo.png" alt="EVOLVE" /></a></h1>
+                        <h1 className="logo"><a href="index.html"><img src="./assets/img/logo.png" alt="EVOLVE" /></a></h1>
                     </div>
                     <nav className="main_menu">
                         <ul>

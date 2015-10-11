@@ -3711,7 +3711,7 @@ var LeftView = React.createClass({
                 React.createElement(
                     'a',
                     { href: '#/' },
-                    React.createElement('img', { src: 'images/logo.png', alt: '' })
+                    React.createElement('img', { src: './assets/images/logo.png', alt: '' })
                 )
             ),
             React.createElement(
